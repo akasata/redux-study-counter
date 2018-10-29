@@ -1,11 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Counter = ({ value }) => (
-  <div>
-    <h1>{value}</h1>
-    <button>+</button>
-    <button>-</button>
-  </div>
-);
+import { increment, decrement } from "../actions";
 
-export default Counter;
+const Counter = ({ count, onIncrement, onDecrement }) => {
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={onIncrement}>+</button>
+      <button onClick={onDecrement}>-</button>
+    </div>
+  );
+};
+
+function mapStateToProps(state) {
+  return {
+    count: state
+  };
+}
+
+function mapStateToDispatch(dispatch) {
+  return {
+    onIncrement: () => {
+      dispatch(increment());
+    },
+
+    onDecrement: () => {
+      dispatch(decrement());
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch
+)(Counter);
