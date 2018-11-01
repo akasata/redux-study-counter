@@ -14,14 +14,23 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "reformat": "prettier 'src/**/*.js' --write",
     "lint": "eslint 'src/**/*.js' --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint; git add",
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.{json,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +48,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.1.2",
+    "lint-staged": "^8.0.4",
     "prettier": "^1.14.3"
   }
 }

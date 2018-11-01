@@ -10,4 +10,17 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "globals": {
+    "it": true,
+    "window": true,
+    "process": true,
+    "navigator": true,
+    "console": true,
+    "fetch": true,
+    "document": true,
+    "URL": true
+  },
+  "rules": {
+    "react/prop-types": 1
+  }
 }
